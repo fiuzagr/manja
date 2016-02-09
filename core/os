@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+manja_os() {
+  local MANJA_UNAME
+  MANJA_UNAME="$(uname -a)"
+  local MANJA_OS
+  case "$MANJA_UNAME" in
+    Linux\ *) MANJA_OS=linux ;;
+    Darwin\ *) MANJA_OS=darwin ;;
+    SunOS\ *) MANJA_OS=sunos ;;
+    FreeBSD\ *) MANJA_OS=freebsd ;;
+  esac
+  echo "$MANJA_OS"
+}
+manja_os $@
+

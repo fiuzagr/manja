@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+manja_alias() {
+  case $1 in
+    "h" )
+      shift
+      manja help $@
+    ;;
+    "i" )
+      shift
+      manja install $@
+    ;;
+    "u" )
+      shift
+      manja uninstall $@
+    ;;
+    * )
+      shift
+      echo 'Command not found! See help: '
+      >&2 manja help $@
+      return 127
+    ;;
+  esac
+}
+manja_alias $@
+

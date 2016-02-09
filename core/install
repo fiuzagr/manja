@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+manja_install() {
+  echo
+  echo "$(fgcolor green)$(icon check)$(fgcolor end) $(fgcolor yellow)Installing...$(fgcolor end)"
+  echo
+  echo "$(i)Plugins should be installed in the $(a bold plugins) dir and make a"
+  echo "$(i)binary exec in the $(a bold plugins/bin) dir. The plugins can have"
+  echo "$(i)dependencies, and it should be installed too."
+  echo 
+}
+manja_install $@
+

@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+{
+  echo 
+  echo 'Manja shell script framework'
+  echo 
+  echo 'Usage:'
+  echo '  manja help                                  Show this message'
+  echo '  manja install <github user/repository>      Download and install a plugin'
+  echo '  manja uninstall <github user/repository>    Uninstall a plugin'
+  echo 
+  echo 'Example:'
+  echo '  manja install MaxCDN/shml'
+  echo '  manja uninstall MaxCDN/shml'
+  echo 
+}
