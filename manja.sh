@@ -20,8 +20,16 @@ if [ -f $MANJA_DIR/vendor/shml/shml.sh ] || [ -h $MANJA_DIR/vendor/shml/shml.sh 
   . $MANJA_DIR/vendor/shml/shml.sh
 fi
 
-
 manja() {
+  env sh -c -e ". ${MANJA_DIR}/manja.sh && _manja $@" || {
+    echo
+    printf "$(fgcolor red)$(icon x)$(fgcolor end) Error...\n"
+    echo
+    exit 1
+  }
+}
+
+_manja() {
 
   # without parameters, execute help
   if [ $# -lt 1 ]; then
@@ -58,8 +66,8 @@ manja() {
   # try execute alias
   manja alias $@
 
+  exit 0
 }
-
 
 } # end script
 

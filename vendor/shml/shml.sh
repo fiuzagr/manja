@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 #SHML:START
 #************************************************#
@@ -35,9 +35,9 @@ fgcolor() {
     white|ffffff)        __color='\033[97m';;
   esac
   if test "$2"; then
-    echo -en "$__color$2$__end"
+    printf "$__color$2$__end"
   else
-    echo -en "$__color"
+    printf "$__color"
   fi
 }
 
@@ -81,9 +81,9 @@ bgcolor() {
   esac
 
   if test "$2"; then
-    echo -en "$__color$2$__end"
+    printf "$__color$2$__end"
   else
-    echo -en "$__color"
+    printf "$__color"
   fi
 }
 
@@ -102,25 +102,25 @@ bg() {
 }
 
 ## Color Bar
-color-bar() {
+color_bar() {
   if test "$2"; then
     for i in "$@"; do
-      echo -en "$(background "$i" " ")"
+      printf "$(background "$i" " ")"
     done; echo
   else
     for i in {16..21}{21..16}; do
-      echo -en "\033[48;5;${i}m \033[0m"
+      printf "\033[48;5;${i}m \033[0m"
     done; echo
   fi
 }
 
 #Alises
 cb() {
-  color-bar "$@"
+  color_bar "$@"
 }
 
 bar() {
-  color-bar "$@"
+  color_bar "$@"
 }
 
 ## Attributes
@@ -138,9 +138,9 @@ attribute() {
     hidden)        __attr='\033[8m';;
   esac
   if test "$2"; then
-    echo -en "$__attr$2$__end"
+    printf "$__attr$2$__end"
   else
-    echo -en "$__attr"
+    printf "$__attr"
   fi
 }
 a() {
@@ -149,11 +149,11 @@ a() {
 
 ## Elements
 br() {
-  echo -e "\n\r"
+  printf "\n\r"
 }
 
 tab() {
-  echo -e "\t"
+  printf "\t"
 }
 
 indent() {
@@ -187,7 +187,7 @@ hr() {
     __char=$1
   fi
   while [ $__len -gt 0 ]; do
-    echo -n "$__char"
+    printf "%s" "$__char"
      __len=$(( $__len - 1 ))
   done
 }
@@ -217,7 +217,9 @@ icon() {
     *)
       entity $1; return 0;;
   esac
-  echo -ne "$i";
+  #print "$i";
+  #echo "$i" | perl -ne 's/([0-9a-f]{2})/print chr hex $1/gie'
+  echo "$i" | sed 's/\\x\([0-9A-F]\{2\}\)/\\\\\\x\1/gI' | xargs printf
 }
 emoji() {
   local i=""
@@ -268,10 +270,10 @@ emoji() {
     *)
       #entity $1; return 0;;
   esac
-  echo -ne "$i"
+  printf "$i"
 }
 
-function e {
+e() {
   emoji "$@"
 }
 
@@ -467,14 +469,14 @@ function e {
 #$(a bold 'Section 7: Color Bar')
 #$(hr '-')
 
-#$(i $I)\$(color-bar)
-#$(i $I)$(color-bar)
+#$(i $I)\$(color_bar)
+#$(i $I)$(color_bar)
 #$(i $I)
-#$(i $I)\$(color-bar red green yellow blue magenta \\
+#$(i $I)\$(color_bar red green yellow blue magenta \\
 #$(i $I)$(i 15)cyan lightgray darkgray lightred \\
 #$(i $I)$(i 15)lightgreen lightyellow lightblue \\
 #$(i $I)$(i 15)lightmagenta lightcyan)
-#$(i $I)$(color-bar red green yellow blue magenta \
+#$(i $I)$(color_bar red green yellow blue magenta \
                   #cyan lightgray darkgray lightred \
                   #lightgreen lightyellow lightblue \
                   #lightmagenta lightcyan)
