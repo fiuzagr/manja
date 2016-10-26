@@ -9,5 +9,5 @@ manja_install() {
   echo "$(i)dependencies, and it should be installed too."
   echo 
 }
-manja_install $@
+manja_install "$*"
 

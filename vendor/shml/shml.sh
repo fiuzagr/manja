@@ -164,7 +164,7 @@ indent() {
     fi
   fi
   while [ $__len -gt 0 ]; do
-    echo -n " "
+    printf " "
      __len=$(( $__len - 1 ))
   done
 }
@@ -218,8 +218,8 @@ icon() {
       entity $1; return 0;;
   esac
   #print "$i";
-  #echo "$i" | perl -ne 's/([0-9a-f]{2})/print chr hex $1/gie'
-  echo "$i" | sed 's/\\x\([0-9A-F]\{2\}\)/\\\\\\x\1/gI' | xargs printf
+  # echo "$i" | perl -ne 's/([0-9a-f]{2})/print chr hex $1/gie'
+  echo "$i" | sed 's/\\x\([0-9A-F]\{2\}\)/\\\\\\x\1/g' | xargs printf
 }
 emoji() {
   local i=""

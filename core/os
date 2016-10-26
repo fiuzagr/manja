@@ -12,5 +12,5 @@ manja_os() {
   esac
   echo "$MANJA_OS"
 }
-manja_os $@
+manja_os "$*"
 
